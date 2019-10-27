@@ -21,7 +21,7 @@ board = [
 event_outcomes = {}
 
 for trail in range(TRIALS):
-    value_sum = sum(sample(board, 8))
+    value_sum = sum(sample(board, 4))
     if value_sum not in event_outcomes:
         event_outcomes[value_sum] = 0
 
