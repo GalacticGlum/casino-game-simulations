@@ -43,7 +43,7 @@ for outcome in combinations(board, 4):
 probability_distribution = {}
 total_combinations = choose(len(board), 4)
 for key in event_outcomes:
-    probability_distribution[key] = event_outcomes[key] / total_combinations * 100
+    probability_distribution[key] = event_outcomes[key] / total_combinations
 
 for key in sorted(probability_distribution.keys()):
-    print(f'{key}: {probability_distribution[key]}')
+    print(f'{key}: {probability_distribution[key] * 100}% ({probability_distribution[key]})')
