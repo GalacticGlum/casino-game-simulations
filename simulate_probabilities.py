@@ -4,7 +4,7 @@ Simulates the probability that specific sum occurs.
 
 from random import randint, sample
 
-TRIALS = 100000000
+TRIALS = 1000000
 
 board = [
     4, 3, 2, 4, 1, 4, 2, 3, 4,
@@ -21,7 +21,7 @@ board = [
 event_outcomes = {}
 
 for trail in range(TRIALS):
-    value_sum = sum(sample(board, 8))
+    value_sum = sum(sample(board, 4))
     if value_sum not in event_outcomes:
         event_outcomes[value_sum] = 0
 
