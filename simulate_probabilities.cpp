@@ -34,7 +34,7 @@ int main()
     for (ull i = 0; i < TRIALS; ++i)
     {
         std::vector<int> selection;
-        std::sample(board.begin(), board.end(), std::back_inserter(selection), 8, random);
+        std::sample(board.begin(), board.end(), std::back_inserter(selection), 4, random);
 
         int sum = 0;
         for (auto& v : selection)
