@@ -1,0 +1,27 @@
+Generating functions are the correct approach here. In fact, your solution is very much on the right track. I'm going to use the example you gave and then we can generalize. The generating function for the multiset $A=\{3,4,5\}$ is 
+$$
+G(x,y)=(1+x^3y)(1+x^3y)(1+x^4y)(1+x^5y),
+$$
+which can be thought of choosing any combination of elements (where $y^m$ represents choosing $m$ elements) to get some exponent of $x$. Therefore, the coefficient of the term in the form of $x^k y^n$ describes the number of ways to make a sum of $k$ by choosing $n$ integers from $A$. Using WolframAlpha to expand $G(x,y)$, we indeed find that the coefficient of $x^{12}y^3$ is $1$, the expected result.
+
+In fact, this approach works regardless of the restriction posed in the original problem statement. For *any* multiset $M$, we can determine the number of solutions to $a_1+a_2+\ldots+a_n=k$ where $a_i \in M$ for all $1 \leq i \leq n$ based on the coefficient of the term $x^k y^n$ in the expansion of the bivariate generating function, $G_M(x,y)$,
+$$
+G_M(x,y)=\prod_{i\in M}(1+x^iy).
+$$
+
+We are thus interested in determing a formula for the coefficient of the term in the form $x^k y^n$ which we will denote as $[x^ky^n]G_M(x,y)$. At this point, we need to pay extra attention. Perhaps I am wrong though it doesn't seem as we can determine a general formula for $[x^ky^n]G_M(x,y)$; however, it just may be possible by the restriction of the original problem: we know that $A$ will contain at least a consecutive series of elements from $a$ to $b$. Therefore, we can write the generating function for $A$ as
+$$
+\begin{align*}
+G_A(x,y)&=\prod_{i=a}^b(1+x^iy)^{m_A(i)},\\
+&=\prod_{i=a}^b(1+x^iy)\prod_{i=a}^b(1+x^iy)^{m_A(i)-1},\\
+&=\frac{(-y;x)_{b+1}}{(-y;x)_a}\prod_{i=a}^b(1+x^iy)^{m_A(i)-1},
+\end{align*}
+$$
+where $m_A(i)$ is the multiplicity of element $i$ in the multiset $A$ and $(a;q)_n$ denotes the $q$-Pochhammer symbol [[1]](http://mathworld.wolfram.com/q-PochhammerSymbol.html). We can rewrite the $q$-Pochammer symbol in terms of a sum:
+$$
+G_A(x,y)=\frac{\sum^{b+1}_{i=0}x^\binom{i}{2}y^i\genfrac{[}{]}{0pt}{}{b+1}{i}}{\sum^a_{i=0}x^\binom{i}{2}y^i\genfrac{[}{]}{0pt}{}{a}{i}}\prod_{i=a}^b(1+x^iy)^{m_A(i)-1}.$$
+Notice that the multiplicands are binomial series which means that we can equivalently write as
+$$
+G_A(x,y)=\frac{\sum^{b+1}_{i=0}x^\binom{i}{2}y^i\genfrac{[}{]}{0pt}{}{b+1}{i}}{\sum^a_{i=0}x^\binom{i}{2}y^i\genfrac{[}{]}{0pt}{}{a}{i}}\prod_{i=a}^b\left(\sum_{j=0}^{m_A(i)}\binom{m_A(i)-1}{j}x^{ij}y^j\right)
+$$
+
