@@ -11,7 +11,9 @@
 
 typedef unsigned long long ull;
 #define TRIALS 100000000
-#define MAX_SUM 44
+#define MARBLE_COUNT 4
+#define MAX_SUM 24
+
 const std::vector<int> board = {
     4, 3, 2, 4, 1, 4, 2, 3, 4,
     3, 4, 5, 3, 6, 3, 5, 4, 3,
@@ -29,12 +31,12 @@ ull event_outcomes[MAX_SUM + 1];
 int main()
 {
     std::fill(std::begin(event_outcomes), std::end(event_outcomes), 0);
-
     std::mt19937 random = std::mt19937{std::random_device{}()};
+
     for (ull i = 0; i < TRIALS; ++i)
     {
         std::vector<int> selection;
-        std::sample(board.begin(), board.end(), std::back_inserter(selection), 4, random);
+        std::sample(board.begin(), board.end(), std::back_inserter(selection), MARBLE_COUNT, random);
 
         int sum = 0;
         for (auto& v : selection)

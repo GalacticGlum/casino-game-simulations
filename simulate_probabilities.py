@@ -4,7 +4,7 @@ Simulates the probability that specific sum occurs.
 
 from random import randint, sample
 
-TRIALS = 1000000
+TRIALS = 100000000
 
 board = [
     4, 3, 2, 4, 1, 4, 2, 3, 4,
